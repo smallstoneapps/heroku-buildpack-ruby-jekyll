@@ -597,11 +597,6 @@ params = CGI.parse(uri.query || "")
 
   def generate_jekyll_site
     puts "Building jekyll site"
-    puts "==> pwd"
-    pipe("pwd")
-    puts "==> ls /tmp"
-    pipe("ls -R /tmp")
-    pipe("==> now building")
     pipe("env PATH=$PATH bundle exec jekyll doctor --trace")
     pipe("env PATH=$PATH bundle exec jekyll build --trace")
     unless $? == 0
