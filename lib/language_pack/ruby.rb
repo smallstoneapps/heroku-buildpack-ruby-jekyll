@@ -598,6 +598,13 @@ params = CGI.parse(uri.query || "")
     puts("Current PATH is: $PATH")
     whichbundle = `which bundle`
     puts("bundle is at: #{whichbundle}")
+
+    puts("Listing vendor/bundle")
+    pipe("ls vendor/bundle")
+
+    puts("Listing vendor/bundle/bin")
+    pipe("ls vendor/bundle/bin")
+
     pipe("env PATH=$PATH bundle exec compass compile --output-style compressed --force --css-dir source/stylesheets")
     puts "Building jekyll site"
     pipe("env PATH=$PATH bundle exec jekyll build 2>&1")
