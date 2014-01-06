@@ -604,8 +604,14 @@ params = CGI.parse(uri.query || "")
     puts("Listing vendor/bundle")
     pipe("ls vendor/bundle")
 
-    puts("Listing vendor/bundle/bin")
-    pipe("ls vendor/bundle/bin")
+    puts("Listing vendor/bundle/ruby/")
+    pipe("ls vendor/bundle/ruby/")
+
+    puts("Listing vendor/bundle/ruby/1.9.3/bin/")
+    pipe("ls vendor/bundle/ruby/1.9.3/bin/")
+
+    puts("Listing vendor/bundle/ruby/1.9.1/bin/")
+    pipe("ls vendor/bundle/ruby/1.9.1/bin/")
 
     pipe("env PATH=$PATH vendor/bundle/ruby/1.9.1/bin/bundle exec compass compile --output-style compressed --force --css-dir source/stylesheets")
     puts "Building jekyll site"
