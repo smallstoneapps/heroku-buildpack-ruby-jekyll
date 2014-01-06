@@ -595,6 +595,9 @@ params = CGI.parse(uri.query || "")
 
   def generate_jekyll_site
     puts("Build compass CSS")
+    env("Current PATH is: $PATH")
+    whichbundle = `which bundle`
+    env("bundle is at: #{whichbundle}")
     pipe("env PATH=$PATH bundle exec compass compile --output-style compressed --force --css-dir source/stylesheets")
     puts "Building jekyll site"
     pipe("env PATH=$PATH bundle exec jekyll build 2>&1")
