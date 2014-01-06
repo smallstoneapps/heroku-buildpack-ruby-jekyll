@@ -607,9 +607,9 @@ params = CGI.parse(uri.query || "")
     puts("Listing vendor/bundle/bin")
     pipe("ls vendor/bundle/bin")
 
-    pipe("env PATH=$PATH bundle exec compass compile --output-style compressed --force --css-dir source/stylesheets")
+    pipe("env PATH=$PATH vendor/bundle/ruby/1.9.1/bin/bundle exec compass compile --output-style compressed --force --css-dir source/stylesheets")
     puts "Building jekyll site"
-    pipe("env PATH=$PATH bundle exec jekyll build 2>&1")
+    pipe("env PATH=$PATH vendor/bundle/ruby/1.9.1/bin/bundle exec jekyll build 2>&1")
     unless $? == 0
       error "Failed to generate site with jekyll."
     end
