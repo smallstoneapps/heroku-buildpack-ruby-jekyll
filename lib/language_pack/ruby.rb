@@ -711,25 +711,11 @@ params = CGI.parse(uri.query || "")
 
   def generate_jekyll_site
     puts("Build compass CSS")
-    puts("Current PATH is: $PATH")
-    whichbundle = `which bundle`
-    puts("bundle is at: #{whichbundle}")
+    run!("env PATH=$PATH vendor/bundle/ruby/1.9.1/bin/compass compile --output-style compressed --force --css-dir source/stylesheets")
 
-    puts("Listing vendor/bundle")
-    pipe("ls vendor/bundle")
-
-    puts("Listing vendor/bundle/ruby/")
-    pipe("ls vendor/bundle/ruby/")
-
-    puts("Listing vendor/bundle/ruby/1.9.3/bin/")
-    pipe("ls vendor/bundle/ruby/1.9.3/bin/")
-
-    puts("Listing vendor/bundle/ruby/1.9.1/bin/")
-    pipe("ls vendor/bundle/ruby/1.9.1/bin/")
-
-    pipe("env PATH=$PATH vendor/bundle/ruby/1.9.1/bin/compass compile --output-style compressed --force --css-dir source/stylesheets")
     puts "Building jekyll site"
-    pipe("env PATH=$PATH vendor/bundle/ruby/1.9.1/bin/jekyll build 2>&1")
+    run!("env PATH=$PATH vendor/bundle/ruby/1.9.1/bin/jekyll build 2>&1")
+
     unless $? == 0
       error "Failed to generate site with jekyll."
     end
