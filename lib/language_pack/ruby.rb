@@ -223,12 +223,6 @@ private
       setup_ruby_install_env
       ENV["PATH"] += ":#{node_bp_bin_path}" if node_js_installed?
 
-      # TODO when buildpack-env-args rolls out, we can get rid of
-      # ||= and the manual setting below
-      config_vars = default_config_vars.each do |key, value|
-        ENV[key] ||= value
-      end
-
       ENV["GEM_PATH"] = slug_vendor_base
       ENV["GEM_HOME"] = slug_vendor_base
       ENV["PATH"]     = default_path
